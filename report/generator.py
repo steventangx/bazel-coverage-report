@@ -63,13 +63,13 @@ def _get_go_importmap(project_dir, workspace_name):
       [
           'bazel',
           'query',
-          'kind(_gazelle_runner, //:*)',
+          'kind(gazelle_runner, //:*)',
           '--output=xml',
       ],
       cwd=project_dir)
 
   query = xml.etree.ElementTree.fromstring(query_str)
-  gazelle_prefixes = query.findall('./rule/string[@name="gazelle:prefix"]')
+  gazelle_prefixes = query.findall('./rule/string[@name="prefix"]')
   if len(gazelle_prefixes) == 0:
     raise Exception("no gazelle rule in root BUILD file")
   if len(gazelle_prefixes) > 1:
