@@ -14,6 +14,8 @@
 
 workspace(name = "hchauvin_bazel_coverage_report")
 
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+
 http_archive(
     name = "com_google_protobuf",
     sha256 = "f6600abeee3babfa18591961a0ff21e7db6a6d9ef82418a261ec4fee44ee6d44",
@@ -33,7 +35,7 @@ http_archive(
     url = "https://github.com/bazelbuild/bazel-gazelle/releases/download/0.11.0/bazel-gazelle-0.11.0.tar.gz",
 )
 
-load("@io_bazel_rules_go//go:def.bzl", "go_rules_dependencies", "go_register_toolchains")
+load("@io_bazel_rules_go//go:def.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()
 
@@ -49,7 +51,7 @@ git_repository(
     remote = "https://github.com/hchauvin/rules_r.git",
 )
 
-load("@com_grail_rules_r//R:dependencies.bzl", "r_rules_dependencies", "r_coverage_dependencies")
+load("@com_grail_rules_r//R:dependencies.bzl", "r_coverage_dependencies", "r_rules_dependencies")
 
 r_rules_dependencies()
 
